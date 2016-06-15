@@ -29,7 +29,7 @@ export default class App extends React.Component{
       return (
           <div>
             <button onClick={this.addItem}>+</button>
-            <Items items={items} />
+            <Items items={items} onDelete={this.deleteItem} />
           </div>
   )}
                
@@ -41,4 +41,14 @@ export default class App extends React.Component{
             }])
         });
   }
+  
+  deleteItem = (sku, e) =>{
+         e.stopPropagation();
+         
+         this.setState({
+            items: this.state.items.filter(item => item.sku !== sku )
+         })
+  }
+  
+   
 }
